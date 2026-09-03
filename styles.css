@@ -1,0 +1,27 @@
+:root{--nav:#192031;--ink:#182236;--line:#e6eaf0;--blue:#5267ff}
+*{box-sizing:border-box}
+body{margin:0;font:14px system-ui,-apple-system,"PingFang SC",sans-serif;color:var(--ink);background:#e8ebef}
+.app-shell{display:flex;min-height:100vh}
+.sidebar{width:260px;flex:none;background:var(--nav);color:#e6eaf1;padding:22px 14px}
+.brand{font-size:18px;font-weight:800;padding:0 10px 24px}
+.brand span{color:#8e9aff}
+.feature-nav{border-top:1px solid #30394d;padding-top:17px}
+.nav-group{margin-bottom:17px}
+.nav-group-title{padding:0 9px 7px;color:#929caf;font-size:11px;font-weight:700;letter-spacing:.1em}
+.nav-item{width:100%;border:0;border-radius:7px;background:transparent;color:#d7dce5;padding:10px;text-align:left;font:inherit;cursor:pointer}
+.nav-item:hover{background:#273147}
+.nav-item.active{background:var(--blue);color:white;font-weight:700}
+.workspace{min-width:0;flex:1;display:flex;flex-direction:column}
+.topbar{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;background:white;border-bottom:1px solid var(--line)}
+.breadcrumb{display:flex;gap:9px;color:#7d8798}
+.breadcrumb strong{color:var(--ink)}
+.device-label{padding:6px 10px;border:1px solid #d6def0;border-radius:6px;background:#f1f5fc;color:#486280;font-size:12px;font-weight:700}
+.canvas-wrap{min-height:0;flex:1;padding:28px;background:#e8ebef}
+.device-stage{width:min(1280px,100%,calc((100vh - 120px) * 1.6));max-width:none;margin:auto;overflow:hidden;border:1px solid #dce2ea;border-radius:11px;background:white;box-shadow:0 12px 30px #17203a12;aspect-ratio:1280 / 800}
+iframe{display:block;width:100%;height:100%;border:0}
+@media(max-width:700px){.sidebar{width:190px}
+.topbar{padding:0 14px}
+.canvas-wrap{padding:14px}
+.device-label{font-size:10px}
+.device-stage{width:min(1280px,100%,calc((100vh - 92px) * 1.6))}
+}

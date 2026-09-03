@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rooster POS · 备菜流程</title>
+  <link rel="stylesheet" href="./styles.css?v=instant-stock-2" />
+</head>
+<body>
+  <main class="demo-stage">
+    <section id="home" class="screen active" aria-label="Rooster POS 首页">
+      <div class="reference-canvas"><img src="./assets/rooster-home-reference.png" alt="Rooster POS 首页原始截图" /><button id="open-order" class="hotspot order-hotspot" aria-label="打开点餐页"></button><button id="open-prep" class="prep-launch" aria-label="打开备菜管理"><span class="prep-mark" aria-hidden="true"><i></i></span><b>备菜</b></button></div>
+    </section>
+
+    <section id="order" class="screen" aria-label="Rooster POS 点餐页"><div class="reference-canvas order-canvas"><img src="./assets/pos-order-reference.png" alt="Rooster POS 点餐页原始截图" /><button id="close-order" class="hotspot exit-hotspot" aria-label="退出点餐页"></button></div></section>
+
+    <section id="prep" class="screen" aria-label="备菜管理">
+      <div class="toast-canvas">
+        <header class="toolbar prep-toolbar"><button id="back-home" class="back" aria-label="返回首页">←</button><div class="toolbar-title"><h1>备菜管理</h1></div><div class="toolbar-actions"><button id="refresh-consumption" class="refresh">刷新</button><button id="open-add-prep" class="save">添加备菜</button></div></header>
+        <div class="prep-layout"><section class="prep-content"><div id="consumption-list" class="consumption-list"></div></section></div>
+        <div id="add-prep-modal" class="modal" hidden><section class="modal-card" role="dialog" aria-modal="true" aria-label="添加备菜"><header><div><h2>添加备菜</h2></div><button id="close-add-prep" class="modal-close" aria-label="关闭添加备菜">×</button></header><div id="recipe-picker" class="recipe-picker"></div><footer id="picker-summary" class="picker-summary"></footer></section></div>
+      </div>
+    </section>
+
+  </main>
+  <script src="./app.js"></script>
+</body>
+</html>

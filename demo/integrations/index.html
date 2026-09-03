@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Rooster POS · 厨房系统集成</title>
+<link rel="stylesheet" href="../config.css?v=kitchen-integration-2" />
+</head>
+<body>
+<main class="config-stage">
+<section class="config-shell">
+<header class="page-head">
+<a class="back-link" href="../index.html">← 返回 POS</a>
+<h1>第三方应用集成</h1>
+</header>
+<div class="integrations">
+<aside class="global-nav">
+<div class="nav-label">销售渠道</div>
+<button class="nav-item">
+<span class="nav-glyph">⌁</span>订单平台</button>
+<div class="nav-label">支付集成</div>
+<button class="nav-item">
+<span class="nav-glyph">◈</span>会员系统</button>
+<div class="nav-label">厨房系统</div>
+<button class="nav-item active">
+<span class="nav-glyph">♨</span>厨房系统</button>
+</aside>
+<section class="main-panel">
+<div class="integration-layout">
+<nav class="section-nav">
+<h2>厨房系统</h2>
+<button class="section-link active">Next Robot</button>
+</nav>
+<section class="integration-content">
+<article class="integration-card">
+<div class="brand-tile">N</div>
+<div>
+<h2>Next Robot</h2>
+<p>先绑定机器人服务，再单独同步 Next Robot 的设备与菜品数据；同步完成后可在“备菜配方”中选择。</p>
+</div>
+<span id="bind-status" class="status">未绑定</span>
+<div class="integration-actions">
+<button id="open-bind" class="outline-btn">绑定</button>
+<button id="sync-catalog" class="primary-btn" hidden>同步菜品</button>
+</div>
+</article>
+</section>
+</div>
+</section>
+</div>
+<div id="bind-modal" class="modal" hidden>
+<form id="bind-form" class="modal-card">
+<header class="modal-head">
+<h2>绑定 Next Robot</h2>
+<button id="close-bind" class="close-btn" type="button" aria-label="关闭">×</button>
+</header>
+<div class="bind-fields">
+<div class="field">
+<label for="app-id">App ID</label>
+<input id="app-id" placeholder="App ID" autocomplete="off" required />
+</div>
+<div class="field">
+<label for="app-secret">Secret</label>
+<input id="app-secret" type="password" placeholder="Secret" autocomplete="new-password" required />
+</div>
+</div>
+<footer class="modal-footer">
+<button id="cancel-bind" class="outline-btn" type="button">取消</button>
+<button class="primary-btn" type="submit">确认绑定</button>
+</footer>
+</form>
+</div>
+</section>
+</main>
+<div id="toast" class="toast" role="status">
+</div>
+<script src="./app.js">
+</script>
+</body>
+</html>
