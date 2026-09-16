@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Rooster POS · 厨房系统集成</title>
-<link rel="stylesheet" href="../config.css?v=kitchen-integration-2" />
+<link rel="stylesheet" href="../config.css?v=robot-bind-only-1" />
 </head>
 <body>
 <main class="config-stage">
@@ -15,7 +15,7 @@
 </header>
 <div class="integrations">
 <aside class="global-nav">
-<div class="nav-label">销售渠道</div>
+<div class="nav-label">菜单渠道</div>
 <button class="nav-item">
 <span class="nav-glyph">⌁</span>订单平台</button>
 <div class="nav-label">支付集成</div>
@@ -36,12 +36,11 @@
 <div class="brand-tile">N</div>
 <div>
 <h2>Next Robot</h2>
-<p>先绑定机器人服务，再单独同步 Next Robot 的设备与菜品数据；同步完成后可在“备菜配方”中选择。</p>
+<p>绑定 Next Robot 后，内部备菜菜单可直接发送到机器人。菜品同步与菜品 Mapping 由 Next Robot 侧维护。</p>
 </div>
 <span id="bind-status" class="status">未绑定</span>
 <div class="integration-actions">
 <button id="open-bind" class="outline-btn">绑定</button>
-<button id="sync-catalog" class="primary-btn" hidden>同步菜品</button>
 </div>
 </article>
 </section>
@@ -57,11 +56,11 @@
 <div class="bind-fields">
 <div class="field">
 <label for="app-id">App ID</label>
-<input id="app-id" placeholder="App ID" autocomplete="off" required />
+<input id="app-id" placeholder="App ID" autocomplete="off" />
 </div>
 <div class="field">
 <label for="app-secret">Secret</label>
-<input id="app-secret" type="password" placeholder="Secret" autocomplete="new-password" required />
+<input id="app-secret" type="password" placeholder="Secret" autocomplete="new-password" />
 </div>
 </div>
 <footer class="modal-footer">

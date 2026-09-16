@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Rooster POS · 菜单管理备菜</title>
-<link rel="stylesheet" href="../config.css?v=prep-recipe-6" />
+<title>Rooster POS · 菜单渠道</title>
+<link rel="stylesheet" href="../config.css?v=menu-channel-v4" />
 </head>
 <body>
 <main class="config-stage">
 <section class="config-shell">
 <header class="page-head">
 <a id="return-pos" class="back-link" href="../index.html">← 返回 POS</a>
-<button id="back-list" class="editor-page-back" hidden aria-label="返回备菜">←</button>
-<h1 id="page-title">备菜</h1>
+<button id="back-list" class="editor-page-back" hidden aria-label="返回菜单">←</button>
+<h1 id="page-title">菜单</h1>
 <button id="header-save" class="head-action" form="recipe-form" type="submit" hidden>保存</button>
 </header>
 <div class="menu-layout">
@@ -24,14 +24,14 @@
 <span class="nav-glyph">▤</span>菜单</button>
 <button class="nav-item">
 <span class="nav-glyph">◐</span>分类</button>
-<button class="nav-item">
-<span class="nav-glyph">♜</span>商品</button>
+<a class="nav-item" href="../product-management/index.html">
+<span class="nav-glyph">♜</span>商品</a>
 <button class="nav-item">
 <span class="nav-glyph">◇</span>规格</button>
 <button class="nav-item">
 <span class="nav-glyph">◒</span>偏好</button>
 <button class="nav-item active">
-<span class="nav-glyph">♨</span>备菜</button>
+<span class="nav-glyph">▤</span>菜单</button>
 </aside>
 <section class="menu-content">
 <section id="recipe-list-page" class="recipe-list-page">
@@ -41,11 +41,9 @@
 </div>
 <div class="recipes-table">
 <div class="table-head">
-<button id="select-all-recipes" class="list-check" type="button" role="checkbox" aria-checked="false" aria-label="全选备菜配方"></button>
-<span>名称</span>
-<span>关联商品</span>
-<span>批次份数</span>
-<span>送厨方式</span>
+<button id="select-all-recipes" class="list-check" type="button" role="checkbox" aria-checked="false" aria-label="全选菜单"></button>
+<span>菜单名称</span>
+<span>菜单渠道</span>
 <span>状态</span>
 <span>操作</span>
 </div>
@@ -53,109 +51,56 @@
 </div>
 </div>
 </section>
+<section id="product-list-page" class="recipe-list-page product-list-page" hidden>
+<div class="list-toolbar"><div class="list-title-group"><label class="recipe-search"><span>⌕</span><input id="product-search" placeholder="搜索名称" aria-label="搜索商品名称" /></label></div><div class="list-actions"><button id="open-product-editor" class="primary-btn">＋ 新增</button></div></div>
+<div class="recipes-table product-table"><div class="table-head"><span>名称</span><span>关联菜单</span><span>Next Robot</span><span>状态</span><span>操作</span></div><div id="product-rows"></div></div>
+</section>
 <section id="recipe-editor" class="recipe-editor" hidden>
-<form id="recipe-form" class="recipe-form">
-<section class="form-section full">
-<h3>基础信息</h3>
-<div class="form-grid recipe-base-grid">
-<div class="field">
-<label for="recipe-name">名称 *</label>
-<input id="recipe-name" placeholder="例如：猪脚饭预制" required />
-</div>
-<div class="field">
-<label for="batch-size">批次份数 *</label>
-<input id="batch-size" type="number" min="1" value="20" required />
-</div>
+<form id="recipe-form" class="recipe-form menu-form-v3">
+<section class="form-section full menu-basics-section">
+<div class="menu-name-grid">
+<div class="menu-field"><label for="menu-name-en">名称</label><input id="menu-name-en" placeholder="名称（英文）" /><input id="recipe-name" placeholder="名称（中文）" /></div>
+<div class="menu-field"><label for="pos-name-en">POS名称（可选）</label><input id="pos-name-en" placeholder="名称（英文）" /><input id="pos-name-zh" placeholder="名称（中文）" /></div>
 </div>
 </section>
-<section class="form-section full associated-products-section">
-<div class="section-title-row">
-<h3>关联商品 *</h3>
-<button id="open-product-picker" class="text-add-button" type="button">＋ 新增</button>
-</div>
-<div class="associated-products-table">
-<div class="associated-products-head"><span>□</span><span></span><span>商品</span><span>价格</span><span>操作</span></div>
-<div id="associated-product-row"></div>
+<section class="form-section full menu-status-section">
+<div class="menu-status-row"><span>状态</span><label class="route-switch" aria-label="菜单状态"><input id="menu-enabled" type="checkbox" checked /><span></span></label><b>激活</b></div>
+</section>
+<section class="form-section full menu-channel-section">
+<h3>菜单渠道</h3>
+<div class="menu-channel-options" role="group" aria-label="菜单渠道">
+<button type="button" class="menu-channel-card" data-menu-channel="POS" onclick="this.classList.toggle('selected')">POS</button>
+<button type="button" class="menu-channel-card" data-menu-channel="Online Order" onclick="this.classList.toggle('selected')">Online Order</button>
+<button type="button" class="menu-channel-card" data-menu-channel="Kiosk" onclick="this.classList.toggle('selected')">Kiosk</button>
+<button type="button" class="menu-channel-card" data-menu-channel="Self Dine in" onclick="this.classList.toggle('selected')">Self Dine in</button>
+<button type="button" class="menu-channel-card" data-menu-channel="Platform Order" onclick="this.classList.toggle('selected')">Platform Order</button>
+<button type="button" class="menu-channel-card" data-menu-channel="内部备菜" onclick="this.classList.toggle('selected')">内部备菜</button>
 </div>
 </section>
-<section class="form-section full delivery-section">
-<div id="delivery-fields" class="delivery-fields">
-<div class="delivery-field-row">
-<label>发送到 KDS</label>
-<div class="route-card-list" role="group" aria-label="KDS 工位">
-<button type="button" class="route-card" data-route-group="kds" data-route-value="热厨工位">热厨工位</button>
-<button type="button" class="route-card" data-route-group="kds" data-route-value="凉菜工位">凉菜工位</button>
-</div>
-</div>
-<div class="delivery-field-row">
-<label>发送到厨房打印机</label>
-<div class="route-card-list" role="group" aria-label="厨房打印机">
-<button type="button" class="route-card" data-route-group="printer" data-route-value="热厨出单机">热厨出单机</button>
-<button type="button" class="route-card" data-route-group="printer" data-route-value="凉菜出单机">凉菜出单机</button>
-</div>
-</div>
-<div id="robot-option" class="delivery-field-row hidden">
-<div class="robot-switch-line">
-<label for="robot-enabled">发送到 Next Robot</label>
-<label class="route-switch" aria-label="启用 Next Robot 送厨"><input id="robot-enabled" type="checkbox" /><span></span></label>
-</div>
-</div>
-</div>
-<p id="robot-hint" class="robot-hint" hidden>请先在「第三方应用集成 → 厨房系统」绑定 Next Robot，才可使用机器人送厨。</p>
+<section class="form-section full supply-section">
+<div class="section-title-row"><h3>供应时段</h3><div><button class="text-add-button" type="button">＋ 新增</button><button class="text-delete-button" type="button" disabled>删除</button></div></div>
+<div class="supply-table"><div class="supply-table-head"><span class="empty-check"></span><span>名称</span><span>时间</span><span>日期</span></div><div class="supply-empty">无加载数据</div></div>
 </section>
+<section class="form-section full category-section"><h3>关联分类</h3><button class="category-picker" type="button"><span>选择分类</span><b>›</b></button></section>
 <p id="form-message" class="form-message">
 </p>
 </form>
 </section>
+<section id="product-editor" class="recipe-editor" hidden>
+<form id="product-form" class="recipe-form product-form-v1">
+<section class="form-section full product-name-section"><div class="product-name-grid"><div class="menu-field"><label for="product-name-en">名称</label><input id="product-name-en" placeholder="名称（英文）" /><input id="product-name-zh" placeholder="名称（中文）" /></div><div class="menu-field"><label for="kitchen-name-en">送厨名称（可选）</label><input id="kitchen-name-en" placeholder="名称（英文）" /><input id="kitchen-name-zh" placeholder="名称（中文）" /></div><div class="menu-field"><label for="product-pos-en">POS名称（可选）</label><input id="product-pos-en" placeholder="名称（英文）" /><input id="product-pos-zh" placeholder="名称（中文）" /></div></div></section>
+<section class="form-section full product-price-section"><div class="product-price-grid"><div class="compact-field"><label for="product-price">价格</label><div class="currency-input"><span>$</span><input id="product-price" placeholder="价格" inputmode="decimal" /></div></div><div class="compact-field"><label>商品类型</label><div class="product-radio-line"><label><input type="radio" name="product-type" checked />普通商品</label><label><input type="radio" name="product-type" />称重商品(lb)</label></div></div><div class="compact-field"><label>状态</label><div class="menu-status-row"><label class="route-switch"><input id="product-enabled" type="checkbox" checked /><span></span></label><b>激活</b></div></div></div></section>
+<section class="form-section full product-routing-section"><div class="product-routing-grid"><div><h3>发送到厨房打印机</h3><button type="button" class="printer-card">厨房</button></div><div><h3>关联分类</h3><button class="category-picker" type="button"><span>选择分类</span><b>›</b></button></div><div id="product-robot-option"><h3>发送到 Next Robot</h3><div class="robot-switch-line"><label class="route-switch" aria-label="启用 Next Robot 送厨"><input id="product-robot-enabled" type="checkbox" /><span></span></label><b>启用</b></div></div></div></section>
+<p id="product-message" class="form-message"></p>
+</form>
 </section>
-</div>
-<div id="product-modal" class="modal" hidden>
-<section class="product-modal-card" role="dialog" aria-modal="true" aria-label="关联商品">
-<header class="product-modal-head">
-<h2>关联商品</h2>
-<button id="close-product-picker" class="close-btn" aria-label="关闭关联商品">×</button>
-</header>
-<div class="product-filters">
-<label>
-<span class="search-glyph">⌕</span>
-<input id="product-search" placeholder="搜索商品" />
-</label>
-<button class="filter-button">全部菜单⌄</button>
-<button class="filter-button">全部分类⌄</button>
-</div>
-<div class="product-panes">
-<section class="product-panel">
-<header>
-<span>□</span>
-<b>未选商品</b>
-</header>
-<div id="available-products" class="product-list">
-</div>
-</section>
-<div class="transfer-actions">
-<button id="move-to-selected" aria-label="移入已选商品">›</button>
-<button id="move-to-available" aria-label="移回未选商品">‹</button>
-</div>
-<section class="product-panel">
-<header>
-<span>□</span>
-<b>已选商品</b>
-</header>
-<div id="chosen-product" class="product-list">
-</div>
-</section>
-</div>
-<footer class="product-modal-footer">
-<button id="cancel-product-picker" class="outline-btn">取消</button>
-<button id="confirm-product-picker" class="primary-btn">确定</button>
-</footer>
 </section>
 </div>
 </section>
 </main>
 <div id="toast" class="toast" role="status">
 </div>
-<script src="./app.js?v=search-bulk-3">
+<script src="./app.js?v=menu-channel-v4">
 </script>
 </body>
 </html>

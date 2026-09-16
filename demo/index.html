@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rooster POS · 备菜流程</title>
-  <link rel="stylesheet" href="./styles.css?v=instant-stock-2" />
+  <link rel="stylesheet" href="./styles.css?v=direct-quantity-1" />
 </head>
 <body>
   <main class="demo-stage">
@@ -14,11 +14,16 @@
 
     <section id="order" class="screen" aria-label="Rooster POS 点餐页"><div class="reference-canvas order-canvas"><img src="./assets/pos-order-reference.png" alt="Rooster POS 点餐页原始截图" /><button id="close-order" class="hotspot exit-hotspot" aria-label="退出点餐页"></button></div></section>
 
-    <section id="prep" class="screen" aria-label="备菜管理">
-      <div class="toast-canvas">
-        <header class="toolbar prep-toolbar"><button id="back-home" class="back" aria-label="返回首页">←</button><div class="toolbar-title"><h1>备菜管理</h1></div><div class="toolbar-actions"><button id="refresh-consumption" class="refresh">刷新</button><button id="open-add-prep" class="save">添加备菜</button></div></header>
-        <div class="prep-layout"><section class="prep-content"><div id="consumption-list" class="consumption-list"></div></section></div>
-        <div id="add-prep-modal" class="modal" hidden><section class="modal-card" role="dialog" aria-modal="true" aria-label="添加备菜"><header><div><h2>添加备菜</h2></div><button id="close-add-prep" class="modal-close" aria-label="关闭添加备菜">×</button></header><div id="recipe-picker" class="recipe-picker"></div><footer id="picker-summary" class="picker-summary"></footer></section></div>
+    <section id="prep" class="screen" aria-label="内部备菜">
+      <div class="prep-order-canvas">
+        <section class="prep-cart" aria-label="备菜清单">
+          <header class="prep-cart-head"><button id="back-home" class="prep-back" aria-label="返回首页">‹</button><strong>备菜</strong><span>内部备菜</span></header>
+          <div id="prep-cart-list" class="prep-cart-list"></div>
+          <footer class="prep-cart-footer"><div class="prep-cart-total"><span>已选菜品</span><b id="selected-count">0 项</b></div><div class="prep-cart-actions"><button id="send-kitchen" class="cart-send">送厨</button></div></footer>
+        </section>
+        <aside id="prep-action-rail" class="prep-action-rail" aria-label="备菜操作"></aside>
+        <section class="prep-menu-pane" aria-label="内部备菜菜单"><header class="prep-menu-top"><button class="prep-menu-select">内部备菜⌄</button><div class="prep-quick-actions"><button aria-label="搜索">⌕</button><button aria-label="刷新">⟳</button><button aria-label="语言">◎</button><button aria-label="菜单">☰</button></div></header><div id="prep-category-grid" class="prep-category-grid"></div><div id="prep-menu-grid" class="prep-menu-grid"></div></section>
+        <div id="prep-toast" class="prep-toast" role="status" aria-live="polite"></div>
       </div>
     </section>
 
