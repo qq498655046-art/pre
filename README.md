@@ -16,7 +16,7 @@
 
 ## 审核评论与 Cloudflare 部署
 
-原型右上角有「评论」入口。直接打开本地文件时，评论会暂存于当前浏览器；部署至 Cloudflare Pages 后，将由 Pages Functions 与 D1 数据库保存共享评论，并支持标记已解决。
+原型右上角有「评论」与「查看评论」入口。点击「评论」后先保存评论人名称，再进入标注模式；在原型页面任意位置点击即可添加带位置标记的评论。「查看评论」显示所有页面的评论及数量，点击一条评论会自动跳转到对应页面；评论支持回复与标记已解决。直接打开本地文件时，评论会暂存于当前浏览器；部署至 Cloudflare Pages 后，将由 Pages Functions 与 D1 数据库保存共享评论。
 
 1. 在 Cloudflare 创建 D1 数据库：`rooster-pos-prep-comments`。
 2. 执行 `wrangler d1 execute rooster-pos-prep-comments --remote --file=./schema.sql` 初始化评论表。

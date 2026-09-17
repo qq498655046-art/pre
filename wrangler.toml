@@ -5,4 +5,4 @@ pages_build_output_dir = "."
 [[d1_databases]]
 binding = "COMMENTS_DB"
 database_name = "rooster-pos-prep-comments"
-database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+database_id = "d012bcfb-3525-46b5-b554-f506884bc0a8"
