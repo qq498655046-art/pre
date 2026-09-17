@@ -13,3 +13,13 @@
 `demo/assets/rooster-home-reference.png` 与 `demo/assets/pos-order-reference.png` 为用户提供的 Rooster 首页、点餐页原始截图，Demo 直接复用为视觉底稿；其余页面为 Rooster 风格的备菜交互演示。
 
 `assets/nextrobot.mp4` 为「视频解说」页面内嵌播放的视频文件，已复制至原型目录，不依赖外部路径。
+
+## 审核评论与 Cloudflare 部署
+
+原型右上角有「评论」入口。直接打开本地文件时，评论会暂存于当前浏览器；部署至 Cloudflare Pages 后，将由 Pages Functions 与 D1 数据库保存共享评论，并支持标记已解决。
+
+1. 在 Cloudflare 创建 D1 数据库：`rooster-pos-prep-comments`。
+2. 执行 `wrangler d1 execute rooster-pos-prep-comments --remote --file=./schema.sql` 初始化评论表。
+3. 将创建后的 D1 Database ID 填入 `wrangler.toml` 的 `database_id`。
+4. 在 Cloudflare Pages 连接 GitHub 仓库 `qq498655046-art/pre`，生产分支选 `main`，构建命令留空，输出目录填 `.`。
+5. Pages 将自动识别 `functions/api/comments.js`，评论接口为 `/api/comments`。

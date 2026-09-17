@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rooster POS · 备菜流程原型</title>
-    <link rel="stylesheet" href="./styles.css?v=toast-p0-3" />
+    <link rel="stylesheet" href="./styles.css?v=comments-v1" />
   </head>
   <body>
     <div class="app-shell">
@@ -13,10 +13,19 @@
         <nav id="feature-nav" class="feature-nav" aria-label="功能清单"></nav>
       </aside>
       <main class="workspace">
-        <header class="topbar"><div class="breadcrumb"><span id="crumb-group"></span><span>/</span><strong id="crumb-page"></strong></div><span class="device-label">1280 × 800 · 平板原型</span></header>
+        <header class="topbar"><div class="breadcrumb"><span id="crumb-group"></span><span>/</span><strong id="crumb-page"></strong></div><div class="topbar-actions"><button id="comment-toggle" class="comment-toggle" type="button">评论 <span id="comment-count">0</span></button><span class="device-label">1280 × 800 · 平板原型</span></div></header>
         <section class="canvas-wrap"><div id="device-stage" class="device-stage"><iframe id="preview-frame" title="原型预览"></iframe></div></section>
       </main>
     </div>
-    <script src="./app.js?v=feature-list-3"></script>
+    <aside id="comment-drawer" class="comment-drawer" aria-label="评论面板" aria-hidden="true">
+      <header class="comment-head"><div><strong>评论</strong><span id="comment-page-name"></span></div><button id="comment-close" class="icon-button" type="button" aria-label="关闭评论">×</button></header>
+      <section id="comment-list" class="comment-list"></section>
+      <form id="comment-form" class="comment-form">
+        <label>审核人<input id="comment-author" maxlength="40" value="审核人" /></label>
+        <label>评论内容<textarea id="comment-body" maxlength="1000" placeholder="请输入评论内容"></textarea></label>
+        <button class="comment-submit" type="submit">提交评论</button>
+      </form>
+    </aside>
+    <script src="./app.js?v=comments-v1"></script>
   </body>
 </html>
