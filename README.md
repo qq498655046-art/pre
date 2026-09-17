@@ -18,8 +18,11 @@
 
 原型右上角有「评论」与「查看评论」入口。点击「评论」后先保存评论人名称，再进入标注模式；在原型页面任意位置点击即可添加带位置标记的评论。「查看评论」显示所有页面的评论及数量，点击一条评论会自动跳转到对应页面；评论支持回复与标记已解决。直接打开本地文件时，评论会暂存于当前浏览器；部署至 Cloudflare Pages 后，将由 Pages Functions 与 D1 数据库保存共享评论。
 
+评论数据带有项目标识 `project_id`。本原型的标识为 `rooster-pos-prep`，配置在 `index.html` 的 `data-review-project-id`。后续原型可复用同一个 D1 数据库，但必须使用不同且固定的项目标识，避免不同原型的评论混在一起。
+
 1. 在 Cloudflare 创建 D1 数据库：`rooster-pos-prep-comments`。
-2. 执行 `wrangler d1 execute rooster-pos-prep-comments --remote --file=./schema.sql` 初始化评论表。
+2. 新建数据库时，执行 `wrangler d1 execute rooster-pos-prep-comments --remote --file=./schema.sql` 初始化评论表。已有数据库则执行一次 `wrangler d1 execute rooster-pos-prep-comments --remote --file=./migrations/0002_add_comment_project_id.sql`。
 3. 将创建后的 D1 Database ID 填入 `wrangler.toml` 的 `database_id`。
 4. 在 Cloudflare Pages 连接 GitHub 仓库 `qq498655046-art/pre`，生产分支选 `main`，构建命令留空，输出目录填 `.`。
-5. Pages 将自动识别 `functions/api/comments.js`，评论接口为 `/api/comments`。
+5. 在 Pages 项目 Settings → Functions → D1 database bindings 中，新增 `COMMENTS_DB` 并选择该数据库；保存后重新部署。
+6. Pages 将自动识别 `functions/api/comments.js`，评论接口为 `/api/comments`。使用两个不同浏览器会话验证评论共享；再验证不同 `project_id` 的原型无法看到本项目评论。

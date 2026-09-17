@@ -1,8 +1,10 @@
 const json = (data, status = 200) => new Response(JSON.stringify(data), { status, headers: { "content-type": "application/json; charset=utf-8" } });
 
 export async function onRequestPost({ request, env, params }) {
-  const { author, body } = await request.json();
+  const { projectId, author, body } = await request.json();
   if (!body?.trim()) return json({ error: "body is required" }, 400);
+  const comment = await env.COMMENTS_DB.prepare("SELECT id FROM prototype_comments WHERE id = ? AND project_id = ?").bind(params.id, String(projectId || "default").slice(0, 100)).first();
+  if (!comment) return json({ error: "comment not found" }, 404);
   const id = crypto.randomUUID();
   const createdAt = new Date().toISOString();
   await env.COMMENTS_DB.prepare(

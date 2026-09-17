@@ -3,7 +3,9 @@
 body{margin:0;font:14px system-ui,-apple-system,"PingFang SC",sans-serif;color:var(--ink);background:#e8ebef}
 .app-shell{display:flex;min-height:100vh}
 .sidebar{width:260px;flex:none;background:var(--nav);color:#e6eaf1;padding:22px 14px}
-.brand{font-size:18px;font-weight:800;padding:0 10px 24px}
+.brand{display:flex;align-items:center;gap:7px;font-size:18px;font-weight:800;padding:0 10px 24px}
+.brand-icon{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;color:#8e9aff;line-height:1}
+.brand-icon svg{display:block;width:100%;height:100%;fill:currentColor}
 .brand span{color:#8e9aff}
 .feature-nav{border-top:1px solid #30394d;padding-top:17px}
 .nav-group{margin-bottom:17px}
@@ -29,7 +31,8 @@ iframe{display:block;width:100%;height:100%;border:0}
 .comment-layer{position:absolute;inset:0;z-index:2;pointer-events:none}
 .comment-layer.annotation-active{pointer-events:auto;cursor:crosshair;background:rgba(82,103,255,.06);outline:2px solid rgba(82,103,255,.42);outline-offset:-2px}
 .comment-layer.annotation-active:before{content:"点击原型页面任意位置添加评论";position:absolute;top:14px;left:50%;transform:translateX(-50%);padding:7px 12px;border-radius:99px;background:#273a58;color:#fff;font-size:12px;font-weight:700;box-shadow:0 4px 12px #17203a29}
-.comment-marker{position:absolute;z-index:3;width:24px;height:24px;transform:translate(-50%,-50%);border:2px solid #fff;border-radius:50%;background:#5267ff;color:#fff;font-size:12px;font-weight:800;line-height:18px;box-shadow:0 2px 7px #17203a40;cursor:pointer}
+.comment-marker{position:absolute;z-index:3;width:24px;height:24px;transform:translate(-50%,-50%);border:2px solid #fff;border-radius:50%;background:#5267ff;color:#fff;font-size:12px;font-weight:800;line-height:18px;box-shadow:0 2px 7px #17203a40;cursor:pointer;pointer-events:auto}
+.comment-marker.resolved{background:#2f9a63}
 .comment-layer.annotation-active .comment-marker{pointer-events:none}
 .comment-editor{position:absolute;z-index:4;width:270px;border:1px solid #d7dfeb;border-radius:9px;background:#fff;box-shadow:0 12px 28px #17203a2e}
 .comment-editor-head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid #e6eaf0}
@@ -72,6 +75,7 @@ iframe{display:block;width:100%;height:100%;border:0}
 .comment-list-item .list-page{display:block;margin-bottom:6px;color:#5267ff;font-size:12px;font-weight:800}
 .comment-list-item .list-content{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .comment-list-item .list-meta{display:block;margin-top:7px;color:#8490a1;font-size:12px}
+.comment-status{display:inline-flex;align-items:center;margin-left:7px;padding:2px 6px;border-radius:4px;background:#e7f5ec;color:#23824f;font-size:11px;font-weight:700}
 .comment-list-empty{margin:45px 0;text-align:center;color:#94a0b1;font-size:13px}
 @media(max-width:700px){.sidebar{width:190px}
 .topbar{padding:0 14px}

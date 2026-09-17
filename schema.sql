@@ -1,5 +1,6 @@
 CREATE TABLE IF NOT EXISTS prototype_comments (
   id TEXT PRIMARY KEY,
+  project_id TEXT NOT NULL,
   page_id TEXT NOT NULL,
   author TEXT NOT NULL,
   body TEXT NOT NULL,
@@ -9,8 +10,8 @@ CREATE TABLE IF NOT EXISTS prototype_comments (
   created_at TEXT NOT NULL
 );
 
-CREATE INDEX IF NOT EXISTS idx_prototype_comments_page_created
-ON prototype_comments (page_id, created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_prototype_comments_project_page_created
+ON prototype_comments (project_id, page_id, created_at DESC);
 
 CREATE TABLE IF NOT EXISTS prototype_comment_replies (
   id TEXT PRIMARY KEY,
