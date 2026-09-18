@@ -39,7 +39,6 @@ function renderPrepCart() {
     const item = menuItems.find((candidate) => candidate.id === id);
     return `<article class="prep-cart-item ${activePrepItemId === id ? "active" : ""}" data-select-line="${id}"><b class="cart-quantity">${quantity}</b><div class="cart-item-main"><strong>${item.name}</strong></div></article>`;
   }).join("") : `<div class="prep-cart-empty"><b>请选择需要备菜的菜品</b><span>在右侧内部备菜菜单中点击菜品</span></div>`;
-  document.querySelector("#selected-count").textContent = `${entries.length} 项`;
   document.querySelector("#send-kitchen").disabled = !entries.length;
   renderActionRail();
 }
